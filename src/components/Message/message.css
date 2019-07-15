@@ -1,0 +1,57 @@
+.message {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.avatar {
+    max-width: 50px;
+}
+
+.avatar-wrp {
+    min-width: 50px;
+}
+
+.message-info {
+    position: relative;
+    margin-left: 1em;
+    flex: 1;
+}
+
+.message-date {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+.like-icon {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: red;
+}
+
+.like-button:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.line {
+    min-height: 1px;
+    background-color: black;
+    margin-top: 10px;
+}
+
+.date-wrp {
+    display: flex;
+    justify-content: center;
+}
+
+.date {
+    padding: 10px;
+    background-color: #9d9d9d;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+

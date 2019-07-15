@@ -1,0 +1,5 @@
+export const DELETE_MESSAGE = "DELETE_MESSAGE";
+export const SEND_MESSAGE="SEND_MESSAGE";
+export const GET_USERS="GET_USERS";
+export const LIKE_MESSAGE="LIKE_MESSAGE";
+export const EDIT_MESSAGE="EDIT_MESSAGE"

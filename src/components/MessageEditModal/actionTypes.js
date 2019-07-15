@@ -1,0 +1,4 @@
+export const SET_CURRENT_MESSAGE_ID = "SET_CURRENT_USER_ID";
+export const DROP_CURRENT_MESSAGE_ID = "DROP_CURRENT_USER_ID";
+export const SHOW_PAGE = "SHOW_PAGE";
+export const HIDE_PAGE = "HIDE_PAGE";

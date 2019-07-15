@@ -1,0 +1,15 @@
+.chatName {
+    grid-area: name;
+}
+
+.participantsCount {
+    grid-area: participants;
+}
+
+.messagesCount {
+    grid-area: messages;
+}
+
+.lastMessageDate {
+    grid-area: lastMessage;
+}
