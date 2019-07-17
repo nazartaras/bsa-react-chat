@@ -1,0 +1,17 @@
+[
+    {
+        "login" : "nagibator228",
+        "password" : "qwerty123",
+        "type" : "admin"
+    },
+    {
+        "login" : "annihilator",
+        "password" : "asdfgh",
+        "type" : "simple"
+    },
+    {
+        "login" : "annihilator1",
+        "password" : "asdfgh",
+        "type" : "simple"
+    }
+]

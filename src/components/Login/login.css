@@ -1,0 +1,29 @@
+.wrapper_form{
+    display: flex;
+    justify-content: center;
+    align-content:center;
+    flex-direction: column;
+}
+.buttons{
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color:#cdeae6; 
+    margin: 10px;
+}
+.buttons:hover{
+    opacity: 0.8;
+   box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.whatToDo{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.twoForms{
+    display: flex;
+    justify-content:center;
+    
+    
+}
