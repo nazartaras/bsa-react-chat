@@ -1,8 +1,9 @@
-import { SET_CURRENT_MESSAGE_ID, DROP_CURRENT_MESSAGE_ID, SET_CURRENT_MESSAGE_DATA } from "./actionTypes";
+import { SET_CURRENT_MESSAGE_ID, DROP_CURRENT_MESSAGE_ID, SET_CURRENT_MESSAGE_DATA, START_LOADING, FINISH_LOADING } from "./actionTypes";
 
 const initialState = {
     messageId: '',
-    text:''
+    text: '',
+    isLoading: true
 };
 
 export default function (state = initialState, action) {
@@ -20,15 +21,24 @@ export default function (state = initialState, action) {
                 messageId: ''
             };
         }
-        case SET_CURRENT_MESSAGE_DATA:{
+        case SET_CURRENT_MESSAGE_DATA: {
             const { id, message } = action.payload.currMessage;
-            console.log('reducer')
-            console.log(id);
-            console.log(message);
-            return{
+            return {
+                ...state,
                 messageId: id,
                 text: message
-            }}
+            }
+        }
+        case START_LOADING:
+            return {
+                ...state,
+                isLoading: true
+            }
+        case FINISH_LOADING:
+            return {
+                ...state,
+                isLoading: false
+            }
         default:
             return state;
     }

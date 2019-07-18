@@ -18,6 +18,17 @@ const editMessageById=(id,text)=>{
   write('./bin/messages.json', messages);
   return messages;
 }
+const deleteMessage=(id)=>{
+  let messages = JSON.parse(fs.readFileSync('./bin/messages.json', 'utf8'));
+  let index = messages.findIndex((el)=>el.id===id);
+  if(index===-1)
+  return false;
+  else{
+    messages.splice(index,1);
+    write('./bin/messages.json', messages);
+    return messages;
+  }
+}
 function write(path, obj){
     let json = JSON.stringify(obj);
     fs.writeFile(path, json, 'utf8',(err) => {
@@ -29,5 +40,6 @@ function write(path, obj){
   
 module.exports={
     addNewMessage,
-    editMessageById
+    editMessageById,
+    deleteMessage
 }

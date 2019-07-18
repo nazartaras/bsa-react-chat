@@ -63,12 +63,10 @@ class Chat extends React.Component{
     }
     handleEditClick(id){
         this.props.history.push(`chat/edit/${id}`)
-       
     }
 
     render() {
-        return this.compare(this.props.messages,[])?<Loading/>:
-        <div className='chatSpace'>
+        return this.props.isLoading?<Loading/>:<div className='chatSpace'>
             <Header participantsNumber={this.countUniqueParticipants(this.props.messages).length} messagesNumber={this.props.messages.length} lastMessage={this.props.messages[this.props.messages.length-1].created_at}/>
             <MessagesBox currentUser={this.props.userName} messagesForMessageBox={this.props.messages} editHandler={this.handleEditClick} deleteHandler={this.handleDeleteClick} likeHandler={this.handleLikeMessage}/>
             <MessageInput handleClick = {this.handleSendClick}/>
@@ -76,9 +74,11 @@ class Chat extends React.Component{
     }
 }
 const mapStateToProps = (state) =>{
+    console.log(state.chat)
     return{
         userName: state.login.userName,
-        messages: state.chat
+        messages: state.chat.messages,
+        isLoading: state.chat.isLoading
     }
 };
 const mapDispatchToProps={

@@ -1,4 +1,4 @@
-import { FETCH_USER_SUCCESS } from "./actionTypes";
+import { FETCH_USER_SUCCESS, START_LOADING, FINISH_LOADING } from "./actionTypes";
 
 const initialState = {
     userData: {
@@ -15,14 +15,22 @@ const initialState = {
 export default function (state = initialState, action) {
     switch (action.type) {
         case FETCH_USER_SUCCESS: {
-            console.log("OK")
             const { userData } = action.payload;
-            console.log(userData)
             return {
                 ...state,
                 userData
             };
         }
+        case START_LOADING:
+            return {
+                ...state,
+                isLoading: true
+            }
+        case FINISH_LOADING:
+            return {
+                ...state,
+                isLoading: false
+            }
 
         default:
             return state;

@@ -1,38 +1,34 @@
-import { DELETE_MESSAGE, SEND_MESSAGE, FETCH_MESSAGES, EDIT_MESSAGE, LIKE_MESSAGE } from "./actionTypes";
+import { DELETE_MESSAGE, SEND_MESSAGE, FETCH_MESSAGES, EDIT_MESSAGE, LIKE_MESSAGE, START_LOADING, FINISH_LOADING } from "./actionTypes";
 
-let initialState = [];
+let initialState = {
+    messages: [],
+    isLoading: true
+};
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case DELETE_MESSAGE:{
-            const { id }=action.payload;
-            let filteredMessages = state.filter(obj => obj.id !== id);
-            return filteredMessages;}
-        /*case SEND_MESSAGE:{
-            return [...state, action.payload.data];}*/
         case FETCH_MESSAGES:{
-            console.log("fetch");
-            return  action.payload.newMessages;
+            return  {
+                ...state,
+                messages: action.payload.newMessages}
         }
         case LIKE_MESSAGE:{
-            let liked = state.filter(el=>el.id==action.payload.id)[0].marked_read;
-            let afterLikeArr = state.map(el=>{
+            let liked = state.messages.filter(el=>el.id==action.payload.id)[0].marked_read;
+            let afterLikeArr = state.messages.map(el=>{
                 return el.id==action.payload.id?{...el, marked_read:!liked} : el;
             })
-            return afterLikeArr;}
-        /*case EDIT_MESSAGE:{
-            const { data } = action.payload;
-            const updatedMessages = state.map(el=>{
-                if(el.id==data.id){
-                el.message=data.text;
-                return el;
+            return {...state,
+            messages:afterLikeArr}}
+        case START_LOADING:
+            return {
+                ...state,
+                isLoading:true
             }
-                else
-                return el;
-            });
-            return updatedMessages;
-        }*/
-
+        case FINISH_LOADING:
+                return {
+                    ...state,
+                    isLoading:false
+            }
         default: 
         return state;
     }

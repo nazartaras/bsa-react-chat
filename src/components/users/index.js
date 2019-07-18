@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import UserItem from './UserItem';
 import * as actions from './actions';
 import PropTypes from 'prop-types';
+import Loading from "../Loading/Loading";
 
 class UserList extends Component {
 	constructor(props) {
@@ -29,7 +30,7 @@ class UserList extends Component {
 	}
 
 	render() {
-		return (
+		return (this.props.isLoading?<Loading/>:
 			<div className="row">
 				<div className="list-group col-10">
 					{
@@ -68,7 +69,8 @@ UserList.propTypes = {
 
 const mapStateToProps = (state) => {
 	return {
-		users: state.users
+		users: state.users.users,
+		isLoading: state.users.isLoading
 	}
 };
 

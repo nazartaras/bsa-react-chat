@@ -1,20 +1,19 @@
 import * as React from "react";
 import Message from "../Message/Message";
 
-class MessagesBox extends React.Component{
-    render(){
+const MessagesBox =({messagesForMessageBox, currentUser, editHandler, deleteHandler, likeHandler})=>{
         let previousMessageDate;
         let currentMessageDate;
         let last = false;
-        const messagesForThisDay = this.props.messagesForMessageBox.map((el, index)=> {
-            if(index===this.props.messagesForMessageBox.length - 1)
+        const messagesForThisDay = messagesForMessageBox.map((el, index)=> {
+            if(index===messagesForMessageBox.length - 1)
             last=true;
             currentMessageDate=el.created_at.split(' ')[0];
             if(currentMessageDate!==previousMessageDate){
                 previousMessageDate = currentMessageDate;
-               return <Message currentUser={this.props.currentUser} messageCurrent={el} isLast={last} onEdit={this.props.editHandler} onDelete={this.props.deleteHandler} onLike={this.props.likeHandler} messagesSameDate={currentMessageDate} key={index} bordered={true}/>
+               return <Message currentUser={currentUser} messageCurrent={el} isLast={last} onEdit={editHandler} onDelete={deleteHandler} onLike={likeHandler} messagesSameDate={currentMessageDate} key={index} bordered={true}/>
             }
-            return <Message currentUser={this.props.currentUser} messageCurrent={el}  isLast={last} onEdit={this.props.editHandler} onDelete={this.props.deleteHandler} onLike={this.props.likeHandler}  key={index} bordered={false}/>
+            return <Message currentUser={currentUser} messageCurrent={el}  isLast={last} onEdit={editHandler} onDelete={deleteHandler} onLike={likeHandler}  key={index} bordered={false}/>
         });
         return   <div className='message-box'>
             {
@@ -22,5 +21,4 @@ class MessagesBox extends React.Component{
             }
         </div>
     }
-}
 export default MessagesBox;

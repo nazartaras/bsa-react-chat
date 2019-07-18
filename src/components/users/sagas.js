@@ -1,12 +1,14 @@
 import axios from 'axios';
 import api from '../../shared/config/api';
 import { call, put, takeEvery, all } from 'redux-saga/effects';
-import { ADD_USER, UPDATE_USER, DELETE_USER, FETCH_USERS } from "./actionTypes";
+import { ADD_USER, UPDATE_USER, DELETE_USER, FETCH_USERS, START_LOADING, FINISH_LOADING } from "./actionTypes";
 
 export function* fetchUsers() {
 	try {
+		yield put({type:START_LOADING});
 		const users = yield call(axios.get, `/adminPage`);
 		yield put({ type: 'FETCH_USERS_SUCCESS', payload: { users: users.data } })
+		yield put({type:FINISH_LOADING});
 	} catch (error) {
 		console.log('fetchUsers error:', error.message)
 	}
@@ -20,8 +22,10 @@ export function* addUser(action) {
 	const newUser = { ...action.payload.data, id: action.payload.id };
 
 	try {
+		yield put({type:START_LOADING});
 		yield call(axios.post, `/adminPage/user`, newUser);
 		yield put({ type: FETCH_USERS });
+		yield put({type:FINISH_LOADING});
 	} catch (error) {
 		console.log('createUser error:', error.message);
 	}
@@ -36,8 +40,10 @@ export function* updateUser(action) {
 	const updatedUser = { ...action.payload.data };
 	
 	try {
+		yield put({type:START_LOADING});
 		yield call(axios.put, `adminPage/${id}`, updatedUser);
 		yield put({ type: FETCH_USERS });
+		yield put({type:FINISH_LOADING});
 	} catch (error) {
 		console.log('updateUser error:', error.message);
 	}
@@ -49,8 +55,10 @@ function* watchUpdateUser() {
 
 export function* deleteUser(action) {
 	try {
+		yield put({type:START_LOADING});
 		yield call(axios.delete, `/adminPage/${action.payload.id}`);
-		yield put({ type: FETCH_USERS })
+		yield put({ type: FETCH_USERS });
+		yield put({type:FINISH_LOADING});
 	} catch (error) {
 		console.log('deleteUser Error:', error.message);
 	}

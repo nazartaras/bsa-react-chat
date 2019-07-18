@@ -6,12 +6,6 @@ export const deleteMessage=id=>({
         id
     }
 });
-/*export const getUsers = data=>({
-    type: FETCH_MESSAGES,
-    payload:{
-        data
-    }
-})*/
 export const getMessages = data =>({
     type:GET_MESSAGES
 })

@@ -2,6 +2,7 @@ import * as React from "react";
 import { connect } from 'react-redux';
 import * as actions from './actions';
 import { editMessage } from '../Chat/actions'
+import Loading from '../Loading/Loading';
 
 class MessageEditModal extends React.Component{
     constructor(props) {
@@ -74,7 +75,7 @@ class MessageEditModal extends React.Component{
     }
 
     render() {
-        return this.getUserPageContent();
+        return this.props.isLoading?<Loading/>:this.getUserPageContent();
     }
 }
 
@@ -82,7 +83,8 @@ const mapStateToProps = (state) => {
     return {
         messages: state.chat,
         messageId: state.messageEditModal.messageId,
-        text:state.messageEditModal.text
+        text:state.messageEditModal.text,
+        isLoading: state.messageEditModal.isLoading
     }
 };
 

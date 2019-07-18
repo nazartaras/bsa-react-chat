@@ -1,1 +1,20 @@
-[{"id":"0","login":"nagibator228","password":"qwerty123","name":"Greatest","surname":"pppc","email":"nagibator@gmail.com","type":"admin"},{"id":"1","name":"Kloyn","surname":"Barancb","email":"annihilator@gmail.com","password":"asdfgh","login":"annihilator","type":"simple"},{"id":"2","name":"Vasya","surname":"vxvx","email":"annihilator1@gmail.com","password":"asdfgh","login":"annihilator1","type":"simple"}]
+[
+    {
+        "id": "0",
+        "login": "nagibator228",
+        "password": "qwerty123",
+        "email": "nagibator@gmai.com",
+        "name": "Greatest",
+        "surname": "Biggest",
+        "type": "admin"
+    },
+    {
+        "id": "1",
+        "login": "annihilator",
+        "password": "asdfgh",
+        "email": "annihilator@gmail.com",
+        "name": "Kloyn",
+        "surname": "Ivan",
+        "type": "simple"
+    }
+]
