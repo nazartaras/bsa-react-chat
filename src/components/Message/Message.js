@@ -28,22 +28,22 @@ class Message extends React.Component {
             })()}
             <div className="message">
                 {(() => {
-                    if (this.props.messageCurrent.user !== "me") {
+                    if (this.props.messageCurrent.user !== this.props.currentUser) {
                         return <div className='avatar-wrp'><img className='avatar' src={this.props.messageCurrent.avatar} alt="author" /></div>
                     }
                 })()}
                 <div className='message-info'>
                     <div className='message-text'  >{this.props.messageCurrent.message}</div>
                     {(() => {
-                        if (this.props.messageCurrent.user !== "me") {
+                        if (this.props.messageCurrent.user !== this.props.currentUser) {
                             return this.props.messageCurrent.marked_read?<button className="like-button"  style={likedStyle} onClick={()=>{this.props.onLike(this.props.messageCurrent.id)}}><i className="fa fa-heart like-icon" /></button>:<button className="like-button" style={notLikedStyle} onClick={()=>{this.props.onLike(this.props.messageCurrent.id)}}><i className="fa fa-heart like-icon" /></button>
                         }
                     })()}
                     {(() => {
                         console.log(this.props.isLast)
-                        if (this.props.messageCurrent.user === "me") {
+                        if (this.props.messageCurrent.user === this.props.currentUser) {
                             return <span>
-                                <button className="btn btn-primary" style={{display: this.props.isLast?'inline-block':'none'}} onClick={() => this.props.onEdit(this.props.messageCurrent.id)}>Edit</button>
+                                <button className="btn btn-primary"  onClick={() => this.props.onEdit(this.props.messageCurrent.id)}>Edit</button>
                                 <button className="btn btn-danger" onClick={() => this.props.onDelete(this.props.messageCurrent.id)}><i className="fas fa-trash-alt"></i></button>
                             </span>
                         }

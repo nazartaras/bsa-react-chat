@@ -17,7 +17,7 @@ class UserList extends Component {
 	}
 
 	onEdit(id) {
-		this.props.history.push(`/user/${id}`);
+		this.props.history.push(`/adminPage/user/${id}`);
 	}
 
 	onDelete(id) {
@@ -25,7 +25,7 @@ class UserList extends Component {
 	}
 
 	onAdd() {
-		this.props.history.push('/user');
+		this.props.history.push('/adminPage/user');
 	}
 
 	render() {

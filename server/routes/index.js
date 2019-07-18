@@ -1,5 +1,5 @@
 var express = require('express');
-const { checkUser } = require("../services/user.service");
+const { checkUser } = require("../services/admin.service");
 var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {

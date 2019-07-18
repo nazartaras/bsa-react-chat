@@ -15,36 +15,39 @@ const createUser= (user) => {
     return false;
   }
   else{
-  let obj = JSON.parse(fs.readFileSync('./bin/userlist.json', 'utf8'));
+  let obj = JSON.parse(fs.readFileSync('./bin/users.json', 'utf8'));
   obj.push(user);
-  write('./bin/userlist.json', obj);
+  write('./bin/users.json', obj);
   return true;
 }
 }
 
 const updateUser= (id, update) => {
-  let obj = JSON.parse(fs.readFileSync('./bin/userlist.json', 'utf8'));
-  for(let i =0; i<obj.length; i++){
-    if(obj[i]._id == id){
-      obj[i]=update;
-      write('./bin/userlist.json', obj);
-      return true;
-    }
-    }
-    return false;
+  let obj = JSON.parse(fs.readFileSync('./bin/users.json', 'utf8'));
+  console.log(update)
+  console.log(id)
+  obj =  obj.map(el=>{
+      if(el.id === id){
+        el = update
+      }
+      return el;
+    })
+    write('./bin/users.json', obj);
+    return true;
   }
  
 
 const deleteUser = (id) =>{
-  let obj = JSON.parse(fs.readFileSync('./bin/userlist.json', 'utf8'));
-  for(let i =0; i<obj.length; i++){
-    if(obj[i]._id == id){
-      obj.splice(i,1);
-      write('./bin/userlist.json', obj);
-      return true;
-    }
-  }
+  console.log(id)
+    let obj = JSON.parse(fs.readFileSync('./bin/users.json', 'utf8'));
+  let index = obj.findIndex((el)=>el.id===id);
+  if(index===-1)
   return false;
+  else{
+    obj.splice(index,1);
+    write('./bin/users.json', obj);
+    return true;
+  }
 }
 
 function write(path, obj){

@@ -1,4 +1,4 @@
-const { saveData } = require("../repositories/user.repository");
+const { saveData } = require("../repositories/admin.repository");
 const fs = require('fs');
 /*
 const getName = (user) => {
@@ -16,38 +16,29 @@ const saveName = (user) => {
     return null;
   }
 };
-
+*/
 const getUsers = () =>{
-  let obj = JSON.parse(fs.readFileSync('./bin/userlist.json', 'utf8'));
-  let users = [];
-  for(let i =0; i<obj.length; i++){
-    users.push(obj[i].name);
-    
-  }
-  return users;
+  let obj = JSON.parse(fs.readFileSync('./bin/users.json', 'utf8'));
+  return obj;
 };
 
 const getUserById = (usId) =>{
-  let obj = JSON.parse(fs.readFileSync('./bin/userlist.json', 'utf8'));
-  let user;
-  for(let i =0; i<obj.length; i++){
-    if(obj[i]._id == usId){
-      user = obj[i];
-      return user;
-    }
-  }
-  return false;
-};*/
+  console.log(usId);
+  let obj = JSON.parse(fs.readFileSync('./bin/users.json', 'utf8'));
+  let user = obj.find(el=>el.id===usId);
+  return user;
+};
 const checkUser = (data) => {
   const userList = JSON.parse(fs.readFileSync('./bin/users.json', 'utf8'));
   let currentUser = userList.find((el)=>el.login===data.login);
   if (currentUser){
     if(currentUser.password == data.password)
-    console.log(currentUser)
     return currentUser;
   }
   return false;
 }
 module.exports = {
-  checkUser
+  checkUser,
+  getUsers,
+  getUserById
 };

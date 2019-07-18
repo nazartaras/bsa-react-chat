@@ -5,7 +5,8 @@ import { FETCH_USER, FETCH_USER_SUCCESS } from "./actionTypes";
 
 export function* fetchUser(action) {
     try {
-        const user = yield call(axios.get, `${api.url}/user/${action.payload.id}`);
+        const user = yield call(axios.get, `${action.payload.id}`);
+        console.log(user.data)
         yield put({ type: FETCH_USER_SUCCESS, payload: { userData: user.data } })
     } catch (error) {
         console.log('fetchUsers error:', error.message)

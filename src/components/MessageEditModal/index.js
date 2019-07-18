@@ -7,28 +7,35 @@ class MessageEditModal extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
+            id:'',
             text:''
         };
         this.handleCancelClick = this.handleCancelClick.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSaveClick = this.handleSaveClick.bind(this);
-        this.updateState = this.updateState.bind(this);
     }
-    componentWillReceiveProps(nextProps) {
+   /* componentWillReceiveProps(nextProps) {
         if (nextProps.messageId !== this.props.messageId && nextProps.messageId!=='') {
             const mess = this.props.messages.find(el => el.id === nextProps.messageId);
             this.setState({
                 text: mess.message
             });
         }
+    }*/
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (nextProps.messageId !== prevState.id && nextProps.match.params.id) {
+            return {
+                id: nextProps.messageId,
+                text : nextProps.text
+            };}
+            else 
+            return null
     }
-    updateState(newText){
-        this.setState({
-            text: newText
-        })
+    componentDidMount(){
+        this.props.fetchMessageData(this.props.match.params.id);
     }
     handleCancelClick(){
-        this.props.hidePage();
+        this.props.history.push('/chat')
     }
     handleInputChange(e){
         this.setState({
@@ -38,10 +45,10 @@ class MessageEditModal extends React.Component{
     handleSaveClick(){
         this.props.editMessage({id:this.props.messageId, text: this.state.text});
         this.props.dropCurrentMessageId();
-        this.props.hidePage();
         this.setState({
             text:''
         });
+        this.props.history.push('/chat')
     }
     getUserPageContent() {
         return (
@@ -67,16 +74,13 @@ class MessageEditModal extends React.Component{
     }
 
     render() {
-       
-        const isShown = this.props.isShown;
-        return isShown ? this.getUserPageContent() : null;
+        return this.getUserPageContent();
     }
 }
 
 const mapStateToProps = (state) => {
     return {
         messages: state.chat,
-        isShown: state.messageEditModal.isShown,
         messageId: state.messageEditModal.messageId,
         text:state.messageEditModal.text
     }

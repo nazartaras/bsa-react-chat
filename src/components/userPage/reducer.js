@@ -2,17 +2,22 @@ import { FETCH_USER_SUCCESS } from "./actionTypes";
 
 const initialState = {
     userData: {
-        name: '',
-        surname: '',
-        email: '',
-        password: ''
+        id: "",
+        login: "",
+        password: "",
+        name: "",
+        surname: "",
+        email: "",
+        type: ""
     }
 };
 
 export default function (state = initialState, action) {
     switch (action.type) {
         case FETCH_USER_SUCCESS: {
+            console.log("OK")
             const { userData } = action.payload;
+            console.log(userData)
             return {
                 ...state,
                 userData

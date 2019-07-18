@@ -12,9 +12,9 @@ class MessagesBox extends React.Component{
             currentMessageDate=el.created_at.split(' ')[0];
             if(currentMessageDate!==previousMessageDate){
                 previousMessageDate = currentMessageDate;
-               return <Message messageCurrent={el} isLast={last} onEdit={this.props.editHandler} onDelete={this.props.deleteHandler} onLike={this.props.likeHandler} messagesSameDate={currentMessageDate} key={index} bordered={true}/>
+               return <Message currentUser={this.props.currentUser} messageCurrent={el} isLast={last} onEdit={this.props.editHandler} onDelete={this.props.deleteHandler} onLike={this.props.likeHandler} messagesSameDate={currentMessageDate} key={index} bordered={true}/>
             }
-            return <Message messageCurrent={el}  isLast={last} onEdit={this.props.editHandler} onDelete={this.props.deleteHandler} onLike={this.props.likeHandler}  key={index} bordered={false}/>
+            return <Message currentUser={this.props.currentUser} messageCurrent={el}  isLast={last} onEdit={this.props.editHandler} onDelete={this.props.deleteHandler} onLike={this.props.likeHandler}  key={index} bordered={false}/>
         });
         return   <div className='message-box'>
             {

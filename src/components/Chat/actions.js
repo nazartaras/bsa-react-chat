@@ -1,4 +1,4 @@
-import { DELETE_MESSAGE, LIKE_MESSAGE, GET_USERS, SEND_MESSAGE, EDIT_MESSAGE } from "./actionTypes";
+import { DELETE_MESSAGE, LIKE_MESSAGE, FETCH_MESSAGES, GET_MESSAGES, SEND_MESSAGE, EDIT_MESSAGE } from "./actionTypes";
 
 export const deleteMessage=id=>({
     type: DELETE_MESSAGE,
@@ -6,11 +6,14 @@ export const deleteMessage=id=>({
         id
     }
 });
-export const getUsers = data=>({
-    type: GET_USERS,
+/*export const getUsers = data=>({
+    type: FETCH_MESSAGES,
     payload:{
         data
     }
+})*/
+export const getMessages = data =>({
+    type:GET_MESSAGES
 })
 export const likeMessage=id=>({
     type: LIKE_MESSAGE,
@@ -28,5 +31,12 @@ export const editMessage=data=>({
     type: EDIT_MESSAGE,
     payload:{
         data
+    }
+})
+export const fetchMessages=data=>(
+    {
+    type: FETCH_MESSAGES,
+    payload:{
+        newMessages:data
     }
 })

@@ -6,7 +6,7 @@ import { messageService } from "../../javascript/services/messageService"
 import Loading from '../Loading/Loading';
 import { connect } from 'react-redux';
 import * as actions from './actions';
-import { showPage, setCurrentMessageId } from '../MessageEditModal/actions'
+import { setCurrentMessageId } from '../MessageEditModal/actions'
 import './chat.css'
 
 class Chat extends React.Component{
@@ -17,9 +17,9 @@ class Chat extends React.Component{
         this.handleLikeMessage = this.handleLikeMessage.bind(this);
         this.handleEditClick = this.handleEditClick.bind(this);
     }
-    async componentDidMount() {
-        let messages = await messageService.getMessages('GET');
-        this.props.getUsers(messages);
+    componentDidMount() {
+        //let messages = await messageService.getMessages('GET');
+        this.props.getMessages();
         window.addEventListener('keydown',(ev)=>{
             if(ev.keyCode===38&&this.props.messages[this.props.messages.length-1].user==='me'){
                 this.handleEditClick(this.props.messages[this.props.messages.length-1].id);
@@ -44,7 +44,7 @@ class Chat extends React.Component{
         let formated_today = today.toLocaleString("uk-UA");
         let newMessage = {
             id: this.props.messages[this.props.messages.length-1].id+1,
-            user: "me",
+            user: this.props.userName,
             avatar: "",
             created_at: formated_today,
             message: document.getElementById('messages-input').value,
@@ -62,29 +62,27 @@ class Chat extends React.Component{
         this.props.likeMessage(id);
     }
     handleEditClick(id){
-        let currMessageText = this.props.messages.find(el=> el.id===id).message;
-        this.props.setCurrentMessageId(id, currMessageText);
-        this.props.showPage();
-
+        this.props.history.push(`chat/edit/${id}`)
+       
     }
 
     render() {
         return this.compare(this.props.messages,[])?<Loading/>:
         <div className='chatSpace'>
             <Header participantsNumber={this.countUniqueParticipants(this.props.messages).length} messagesNumber={this.props.messages.length} lastMessage={this.props.messages[this.props.messages.length-1].created_at}/>
-            <MessagesBox messagesForMessageBox={this.props.messages} editHandler={this.handleEditClick} deleteHandler={this.handleDeleteClick} likeHandler={this.handleLikeMessage}/>
+            <MessagesBox currentUser={this.props.userName} messagesForMessageBox={this.props.messages} editHandler={this.handleEditClick} deleteHandler={this.handleDeleteClick} likeHandler={this.handleLikeMessage}/>
             <MessageInput handleClick = {this.handleSendClick}/>
         </div>
     }
 }
 const mapStateToProps = (state) =>{
     return{
+        userName: state.login.userName,
         messages: state.chat
     }
 };
 const mapDispatchToProps={
     ...actions,
-    showPage,
     setCurrentMessageId
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Chat);

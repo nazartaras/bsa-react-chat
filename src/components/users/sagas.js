@@ -5,7 +5,7 @@ import { ADD_USER, UPDATE_USER, DELETE_USER, FETCH_USERS } from "./actionTypes";
 
 export function* fetchUsers() {
 	try {
-		const users = yield call(axios.get, `${api.url}/user`);
+		const users = yield call(axios.get, `/adminPage`);
 		yield put({ type: 'FETCH_USERS_SUCCESS', payload: { users: users.data } })
 	} catch (error) {
 		console.log('fetchUsers error:', error.message)
@@ -20,7 +20,7 @@ export function* addUser(action) {
 	const newUser = { ...action.payload.data, id: action.payload.id };
 
 	try {
-		yield call(axios.post, `${api.url}/user`, newUser);
+		yield call(axios.post, `/adminPage/user`, newUser);
 		yield put({ type: FETCH_USERS });
 	} catch (error) {
 		console.log('createUser error:', error.message);
@@ -36,7 +36,7 @@ export function* updateUser(action) {
 	const updatedUser = { ...action.payload.data };
 	
 	try {
-		yield call(axios.put, `${api.url}/user/${id}`, updatedUser);
+		yield call(axios.put, `adminPage/${id}`, updatedUser);
 		yield put({ type: FETCH_USERS });
 	} catch (error) {
 		console.log('updateUser error:', error.message);
@@ -49,7 +49,7 @@ function* watchUpdateUser() {
 
 export function* deleteUser(action) {
 	try {
-		yield call(axios.delete, `${api.url}/user/${action.payload.id}`);
+		yield call(axios.delete, `/adminPage/${action.payload.id}`);
 		yield put({ type: FETCH_USERS })
 	} catch (error) {
 		console.log('deleteUser Error:', error.message);

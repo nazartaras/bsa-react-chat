@@ -15,8 +15,8 @@ function App (){
           <Route exact path='/chat' component={Chat}/>
           <Route path='/chat/edit/:id' component={MessageEditModal}/>
           <Route exact path="/adminPage" component={UserList} />
-          <Route exact path="/adminPage/uset" component={UserPage} />
-				  <Route path="/adminPage/uset/:id" component={UserPage} />
+          <Route exact path="/adminPage/user" component={UserPage} />
+				  <Route path="/adminPage/user/:id" component={UserPage} />
           </Switch>
         </div>
       );

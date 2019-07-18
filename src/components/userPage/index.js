@@ -37,7 +37,7 @@ class UserPage extends Component {
 
     onCancel() {
         this.setState(this.getDefaultUserData());
-        this.props.history.push('/');
+        this.props.history.push('/adminPage');
     }
 
     onSave() {
@@ -47,7 +47,7 @@ class UserPage extends Component {
             this.props.addUser(this.state);
         }
         this.setState(this.getDefaultUserData());
-        this.props.history.push('/');
+        this.props.history.push('/adminPage');
     }
 
     onChangeData(e, keyword) {

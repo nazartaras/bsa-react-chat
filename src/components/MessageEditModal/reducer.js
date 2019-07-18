@@ -1,8 +1,7 @@
-import { SET_CURRENT_MESSAGE_ID, DROP_CURRENT_MESSAGE_ID, SHOW_PAGE, HIDE_PAGE } from "./actionTypes";
+import { SET_CURRENT_MESSAGE_ID, DROP_CURRENT_MESSAGE_ID, SET_CURRENT_MESSAGE_DATA } from "./actionTypes";
 
 const initialState = {
     messageId: '',
-    isShown: false,
     text:''
 };
 
@@ -12,7 +11,6 @@ export default function (state = initialState, action) {
             const { id, text } = action.payload;
             return {
                 ...state,
-                text: text,
                 messageId: id
             };
         }
@@ -22,21 +20,15 @@ export default function (state = initialState, action) {
                 messageId: ''
             };
         }
-
-        case SHOW_PAGE: {
-            return {
-                ...state,
-                isShown: true
-            };
-        }
-
-        case HIDE_PAGE: {
-            return {
-                ...state,
-                isShown: false
-            };
-        }
-
+        case SET_CURRENT_MESSAGE_DATA:{
+            const { id, message } = action.payload.currMessage;
+            console.log('reducer')
+            console.log(id);
+            console.log(message);
+            return{
+                messageId: id,
+                text: message
+            }}
         default:
             return state;
     }

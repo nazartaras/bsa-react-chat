@@ -1,7 +1,9 @@
 {
     "id": "",
+    "login":"",
+    "password": "",
     "name": "",
     "surname": "",
     "email": "",
-    "password": ""
+    "type":""
 }
