@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { call, put, takeEvery, all } from 'redux-saga/effects';
-import { DELETE_MESSAGE, SEND_MESSAGE, FETCH_MESSAGES, EDIT_MESSAGE, LIKE_MESSAGE, GET_MESSAGES, START_LOADING, FINISH_LOADING, ERROR } from "./actionTypes";
+import { DELETE_MESSAGE, SEND_MESSAGE, FETCH_MESSAGES, EDIT_MESSAGE, GET_MESSAGES, START_LOADING, FINISH_LOADING, ERROR } from "./actionTypes";
 
 
 export function* getMessages(){

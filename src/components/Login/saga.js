@@ -1,5 +1,4 @@
 import axios from 'axios';
-import api from '../../shared/config/api';
 import { call, put, takeEvery, all } from 'redux-saga/effects';
 import { LOGIN_USER, LOGIN_USER_SUCCESS, ERROR } from "./actionTypes";
 

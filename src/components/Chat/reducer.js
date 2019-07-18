@@ -1,4 +1,4 @@
-import { DELETE_MESSAGE, SEND_MESSAGE, FETCH_MESSAGES, EDIT_MESSAGE, LIKE_MESSAGE, START_LOADING, FINISH_LOADING, ERROR} from "./actionTypes";
+import {  FETCH_MESSAGES,  LIKE_MESSAGE, START_LOADING, FINISH_LOADING, ERROR} from "./actionTypes";
 
 let initialState = {
     messages: [],
@@ -13,9 +13,9 @@ export default function (state = initialState, action) {
                 messages: action.payload.newMessages}
         }
         case LIKE_MESSAGE:{
-            let liked = state.messages.filter(el=>el.id==action.payload.id)[0].marked_read;
+            let liked = state.messages.filter(el=>el.id===action.payload.id)[0].marked_read;
             let afterLikeArr = state.messages.map(el=>{
-                return el.id==action.payload.id?{...el, marked_read:!liked} : el;
+                return el.id===action.payload.id?{...el, marked_read:!liked} : el;
             })
             return {...state,
             messages:afterLikeArr}}

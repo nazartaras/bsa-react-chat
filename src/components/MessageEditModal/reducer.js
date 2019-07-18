@@ -9,7 +9,7 @@ const initialState = {
 export default function (state = initialState, action) {
     switch (action.type) {
         case SET_CURRENT_MESSAGE_ID: {
-            const { id, text } = action.payload;
+            const { id } = action.payload;
             return {
                 ...state,
                 messageId: id

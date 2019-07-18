@@ -3,7 +3,6 @@ import Chat from './Chat/Chat'
 import UserList from './users/index';
 import UserPage from './userPage/index';
 import Login from './Login/Login';
-import Loading from './Loading/Loading'
 import { Switch, Route } from 'react-router-dom';
 import MessageEditModal from './MessageEditModal/index'
 

@@ -30,7 +30,7 @@ class UserList extends Component {
 	}
 
 	render() {
-		return (this.props.isLoading?<Loading/>:
+		return this.props.userType==="admin"?(this.props.isLoading?<Loading/>:
 			<div className="row">
 				<div className="list-group col-10">
 					{
@@ -58,8 +58,7 @@ class UserList extends Component {
 						Add user
 					</button>
 				</div>
-			</div>
-		);
+			</div>):<div>YOU ARE NOT ADMIN</div>
 	}
 }
 
@@ -70,7 +69,8 @@ UserList.propTypes = {
 const mapStateToProps = (state) => {
 	return {
 		users: state.users.users,
-		isLoading: state.users.isLoading
+		isLoading: state.users.isLoading,
+		currUserType:state.login.userType
 	}
 };
 

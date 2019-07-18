@@ -19,7 +19,7 @@ class Login extends React.Component{
 
     handleLogIn(){
         let userData = {login: document.getElementById('login').value, password: document.getElementById('password').value }
-        let response = this.props.loginUser(userData);
+        this.props.loginUser(userData)
         if(this.props.userName!==''){
         if(this.props.userType==='admin'){
             this.props.history.push('/adminPage');

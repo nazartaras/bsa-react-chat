@@ -2,7 +2,6 @@ import * as React from "react";
 import Header from "../Header/Header"
 import MessagesBox from "../MessagesBox/MessagesBox"
 import MessageInput from"../MessageInput/MessageInput"
-import { messageService } from "../../javascript/services/messageService"
 import Loading from '../Loading/Loading';
 import { connect } from 'react-redux';
 import * as actions from './actions';
