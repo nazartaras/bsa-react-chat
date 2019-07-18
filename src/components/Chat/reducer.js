@@ -1,4 +1,4 @@
-import { DELETE_MESSAGE, SEND_MESSAGE, FETCH_MESSAGES, EDIT_MESSAGE, LIKE_MESSAGE, START_LOADING, FINISH_LOADING } from "./actionTypes";
+import { DELETE_MESSAGE, SEND_MESSAGE, FETCH_MESSAGES, EDIT_MESSAGE, LIKE_MESSAGE, START_LOADING, FINISH_LOADING, ERROR} from "./actionTypes";
 
 let initialState = {
     messages: [],
@@ -29,6 +29,9 @@ export default function (state = initialState, action) {
                     ...state,
                     isLoading:false
             }
+        case ERROR:
+            alert(action.payload.errorMessage)
+            return state;
         default: 
         return state;
     }

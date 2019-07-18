@@ -5,3 +5,4 @@ export const FETCH_USERS = "FETCH_USERS";
 export const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS";
 export const START_LOADING="START_LOADING";
 export const FINISH_LOADING="FINISH_LOADING"
+export const ERROR = "ERROR";

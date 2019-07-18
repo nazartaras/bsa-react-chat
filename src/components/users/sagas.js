@@ -1,7 +1,7 @@
 import axios from 'axios';
 import api from '../../shared/config/api';
 import { call, put, takeEvery, all } from 'redux-saga/effects';
-import { ADD_USER, UPDATE_USER, DELETE_USER, FETCH_USERS, START_LOADING, FINISH_LOADING } from "./actionTypes";
+import { ADD_USER, UPDATE_USER, DELETE_USER, FETCH_USERS, START_LOADING, FINISH_LOADING, ERROR } from "./actionTypes";
 
 export function* fetchUsers() {
 	try {
@@ -10,6 +10,7 @@ export function* fetchUsers() {
 		yield put({ type: 'FETCH_USERS_SUCCESS', payload: { users: users.data } })
 		yield put({type:FINISH_LOADING});
 	} catch (error) {
+		yield put({type:ERROR, payload:{errorMessage:error.message}});
 		console.log('fetchUsers error:', error.message)
 	}
 }
@@ -27,6 +28,7 @@ export function* addUser(action) {
 		yield put({ type: FETCH_USERS });
 		yield put({type:FINISH_LOADING});
 	} catch (error) {
+		yield put({type:ERROR, payload:{errorMessage:error.message}});
 		console.log('createUser error:', error.message);
 	}
 }
@@ -45,6 +47,7 @@ export function* updateUser(action) {
 		yield put({ type: FETCH_USERS });
 		yield put({type:FINISH_LOADING});
 	} catch (error) {
+		yield put({type:ERROR, payload:{errorMessage:error.message}});
 		console.log('updateUser error:', error.message);
 	}
 }
@@ -60,6 +63,7 @@ export function* deleteUser(action) {
 		yield put({ type: FETCH_USERS });
 		yield put({type:FINISH_LOADING});
 	} catch (error) {
+		yield put({type:ERROR, payload:{errorMessage:error.message}});
 		console.log('deleteUser Error:', error.message);
 	}
 }

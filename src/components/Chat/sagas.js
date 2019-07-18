@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { call, put, takeEvery, all } from 'redux-saga/effects';
-import { DELETE_MESSAGE, SEND_MESSAGE, FETCH_MESSAGES, EDIT_MESSAGE, LIKE_MESSAGE, GET_MESSAGES, START_LOADING, FINISH_LOADING } from "./actionTypes";
+import { DELETE_MESSAGE, SEND_MESSAGE, FETCH_MESSAGES, EDIT_MESSAGE, LIKE_MESSAGE, GET_MESSAGES, START_LOADING, FINISH_LOADING, ERROR } from "./actionTypes";
 
 
 export function* getMessages(){
@@ -10,6 +10,7 @@ export function* getMessages(){
        yield put({type: FETCH_MESSAGES, payload:{ newMessages:messages.data } })
        yield put({type:FINISH_LOADING});
     }catch(err){
+        yield put({type:ERROR, payload:{errorMessage:err}});
         console.log("Failed to get users"); 
     }
 }
@@ -23,7 +24,7 @@ export function* sendMessage(action){
       yield put({type: FETCH_MESSAGES, payload:{ newMessages:messages.data } });
       yield put({type:FINISH_LOADING});
     }catch(err){
-
+        yield put({type:ERROR, payload:{errorMessage:"Something went wrong during sending the message"}});
     }
 }
 function* watchSendMessage(){
@@ -36,7 +37,7 @@ export function* deleteMessage(action){
         yield put({type:FETCH_MESSAGES, payload:{ newMessages:messages.data}});
        yield put({type:FINISH_LOADING});
     }catch(err){
-
+        yield put({type:ERROR, payload:{errorMessage:"Something went wrong during deleting the message"}});
     }
 }
 function* watchDeleteMessage(){
@@ -49,7 +50,7 @@ export function* editMessage(action){
         yield put({type: FETCH_MESSAGES, payload:{ newMessages:messages.data } });
        yield put({type:FINISH_LOADING});
     }catch(err){
-
+        yield put({type:ERROR, payload:{errorMessage:"Something went wrong during updating the message"}});
     }
 
 }

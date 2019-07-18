@@ -2,3 +2,4 @@ export const FETCH_USER = "FETCH_USER";
 export const FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS";
 export const START_LOADING="START_LOADING";
 export const FINISH_LOADING="FINISH_LOADING"
+export const ERROR = "ERROR"

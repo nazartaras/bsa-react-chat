@@ -5,4 +5,5 @@ export const LIKE_MESSAGE="LIKE_MESSAGE";
 export const EDIT_MESSAGE="EDIT_MESSAGE";
 export const GET_MESSAGES="GET_MESSAGES";
 export const START_LOADING="START_LOADING";
-export const FINISH_LOADING="FINISH_LOADING"
+export const FINISH_LOADING="FINISH_LOADING";
+export const ERROR = "ERROR";

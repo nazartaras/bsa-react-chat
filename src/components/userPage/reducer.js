@@ -1,4 +1,4 @@
-import { FETCH_USER_SUCCESS, START_LOADING, FINISH_LOADING } from "./actionTypes";
+import { FETCH_USER_SUCCESS, START_LOADING, FINISH_LOADING, ERROR } from "./actionTypes";
 
 const initialState = {
     userData: {
@@ -31,6 +31,9 @@ export default function (state = initialState, action) {
                 ...state,
                 isLoading: false
             }
+        case ERROR:
+            alert(action.payload.errorMessage)
+            return state;
 
         default:
             return state;
