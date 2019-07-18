@@ -109,7 +109,7 @@ class UserPage extends Component {
 
     render() {
         const data = this.state;
-        return this.props.currUserType==="admin"? <div className="modal" style={{ display: "block" }} tabIndex="-1" role="dialog">
+        return this.props.currUserType==="admin"?<div className="modal" style={{ display: "block" }} tabIndex="-1" role="dialog">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content" style={{ padding: "5px" }}>
                         <div className="modal-header">

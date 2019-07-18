@@ -30,7 +30,7 @@ class UserList extends Component {
 	}
 
 	render() {
-		return this.props.userType==="admin"?(this.props.isLoading?<Loading/>:
+		return this.props.currUserType==="admin"?(this.props.isLoading?<Loading/>:
 			<div className="row">
 				<div className="list-group col-10">
 					{

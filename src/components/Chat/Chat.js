@@ -20,13 +20,11 @@ class Chat extends React.Component{
         //let messages = await messageService.getMessages('GET');
         this.props.getMessages();
         window.addEventListener('keydown',(ev)=>{
-            if(ev.keyCode===38&&this.props.messages[this.props.messages.length-1].user==='me'){
+            console.log('ds')
+            if(ev.keyCode===38&&this.props.messages[this.props.messages.length-1].user===this.props.userName){
                 this.handleEditClick(this.props.messages[this.props.messages.length-1].id);
             }
         })
-    }
-    compare(a1, a2) {
-            return a1.length === a2.length && a1.every((v,i)=>v === a2[i])
     }
     countUniqueParticipants(array){
         let userNames = array.map((elem)=>{

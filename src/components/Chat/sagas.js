@@ -19,7 +19,7 @@ function* watchGetMessages(){
 }
 export function* sendMessage(action){
     try{
-        yield put({type:START_LOADING});
+    yield put({type:START_LOADING});
        const messages = yield call (axios.post, '/chat', action.payload.data);
       yield put({type: FETCH_MESSAGES, payload:{ newMessages:messages.data } });
       yield put({type:FINISH_LOADING});
